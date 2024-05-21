@@ -3,6 +3,7 @@ package com.projet1.stationgestion.repository;
 import com.projet1.stationgestion.db.ConnectDB;
 import com.projet1.stationgestion.entity.OperationProduct;
 
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,5 +69,23 @@ public class OperationProductCrud implements CrudOperations<OperationProduct>{
             throw new RuntimeException(e);
         }
         return false;
+    }
+    public OperationProduct getOperationProductByNumber(int id) {
+        String sql = "SELECT * FROM operationProduct WHERE id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new OperationProduct(
+                        resultSet.getInt("productId"),
+                        resultSet.getTimestamp("dateTime").toInstant(),
+                        resultSet.getString("operationType"),
+                        resultSet.getInt("quantity")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

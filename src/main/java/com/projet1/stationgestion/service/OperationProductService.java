@@ -9,20 +9,21 @@ import java.util.List;
 
 @Service
 public class OperationProductService {
-    private final OperationProductCrud operationProductCrud;
+    private static OperationProductCrud operationProductCrud;
     public OperationProductService(OperationProductCrud operationProductCrud) {
         this.operationProductCrud = operationProductCrud;
     }
-
-
     public List<OperationProduct> getAllOperationProducts()throws SQLException {
         return operationProductCrud.findAll();
     }
     public OperationProduct saveOperationProduct(OperationProduct operationProduct)throws SQLException {
         return operationProductCrud.save(operationProduct);
     }
-    public boolean updateOperationProduct(int id, OperationProduct operationProduct) throws SQLException {
+    public static boolean updateOperationProduct(int id, OperationProduct operationProduct) throws SQLException {
         return operationProductCrud.update(operationProduct);
+    }
+    public OperationProduct getOperationProductByNumber(int id) {
+        return operationProductCrud.getOperationProductByNumber(id);
     }
 
 }
