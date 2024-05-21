@@ -2,6 +2,8 @@ package com.projet1.stationgestion.repository;
 
 import com.projet1.stationgestion.db.ConnectDB;
 import com.projet1.stationgestion.entity.Product;
+import com.projet1.stationgestion.entity.Station;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,5 +64,22 @@ public class ProductCrud implements CrudOperations<Product>{
             throw new RuntimeException(e);
         }
         return false;
+    }
+    public Product getProductByNumber(int id) {
+        String sql = "SELECT * FROM station WHERE id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new Product(
+                        resultSet.getInt("idTemplate"),
+                        resultSet.getDouble("stockQuantity"),
+                        resultSet.getInt("evaporationRate")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

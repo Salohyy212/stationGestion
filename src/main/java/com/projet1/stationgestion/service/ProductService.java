@@ -2,6 +2,7 @@ package com.projet1.stationgestion.service;
 
 
 import com.projet1.stationgestion.entity.Product;
+import com.projet1.stationgestion.entity.Station;
 import com.projet1.stationgestion.repository.ProductCrud;
 
 import java.sql.SQLException;
@@ -18,8 +19,11 @@ public class ProductService {
     public Product saveProduct(Product product)throws SQLException {
         return productCrud.save(product);
     }
-    public boolean updateProduct(int id, Product product) throws SQLException {
+    public static boolean updateProduct(int id, Product product) throws SQLException {
         return productCrud.update(product);
+    }
+    public Product getProductByNumber(int id) {
+        return productCrud.getProductByNumber(id);
     }
 
 }

@@ -32,7 +32,7 @@ public class StationController {
         }
     }
     @PostMapping("/station")
-    public ResponseEntity<Station> addSill(@RequestBody Station station) throws SQLException {
+    public ResponseEntity<Station> addStation(@RequestBody Station station) throws SQLException {
         Station savedStation = stationService.saveStation(station);
         return new ResponseEntity<>(savedStation, HttpStatus.CREATED);
     }
