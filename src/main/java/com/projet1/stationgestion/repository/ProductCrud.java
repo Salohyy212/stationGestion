@@ -66,7 +66,7 @@ public class ProductCrud implements CrudOperations<Product>{
         return false;
     }
     public Product getProductByNumber(int id) {
-        String sql = "SELECT * FROM station WHERE id=?";
+        String sql = "SELECT * FROM product WHERE id=?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();

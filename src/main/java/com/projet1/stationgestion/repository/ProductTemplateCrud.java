@@ -1,6 +1,7 @@
 package com.projet1.stationgestion.repository;
 
 import com.projet1.stationgestion.db.ConnectDB;
+import com.projet1.stationgestion.entity.Product;
 import com.projet1.stationgestion.entity.ProductName;
 import com.projet1.stationgestion.entity.ProductTemplate;
 import com.projet1.stationgestion.entity.Station;
@@ -65,5 +66,22 @@ public class ProductTemplateCrud implements CrudOperations<ProductTemplate>{
             throw new RuntimeException(e);
         }
         return false;
+    }
+    public ProductTemplate getProductTemplateByNumber(int id) {
+        String sql = "SELECT * FROM productTemplate WHERE id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return new ProductTemplate(
+                        resultSet.getInt("productTemplateId"),
+                        resultSet.getObject("productName", ProductName.class),
+                        resultSet.getDouble("price")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

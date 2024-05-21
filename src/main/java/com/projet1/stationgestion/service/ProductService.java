@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ProductService {
-    private final ProductCrud productCrud;
+    private static ProductCrud productCrud;
     public ProductService(ProductCrud productCrud) {
         this.productCrud = productCrud;
     }

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ProductTemplateService {
-    private final ProductTemplateCrud productTemplateCrud;
+    private static  ProductTemplateCrud productTemplateCrud;
     public ProductTemplateService(ProductTemplateCrud productTemplateCrud) {
         this.productTemplateCrud = productTemplateCrud;
     }
@@ -18,8 +18,11 @@ public class ProductTemplateService {
     public ProductTemplate saveProductTemplate(ProductTemplate productTemplate)throws SQLException {
         return productTemplateCrud.save(productTemplate);
     }
-    public boolean updateProductTemplate(int id, ProductTemplate productTemplate) throws SQLException {
+    public static boolean updateProductTemplate(int id, ProductTemplate productTemplate) throws SQLException {
         return productTemplateCrud.update(productTemplate);
+    }
+    public ProductTemplate getProductTemplateByNumber(int id) {
+        return productTemplateCrud.getProductTemplateByNumber(id);
     }
 
 }
