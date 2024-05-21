@@ -1,5 +1,5 @@
 package com.projet1.stationgestion.entity;
 
-public enum MovementType {
+public enum OperationType {
     Entry, exit
 }

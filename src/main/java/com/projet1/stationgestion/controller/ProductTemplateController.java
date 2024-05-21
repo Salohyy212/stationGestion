@@ -1,2 +1,4 @@
-package com.projet1.stationgestion.controller;public class ProductTemplateController {
+package com.projet1.stationgestion.controller;
+
+public class ProductTemplateController {
 }
